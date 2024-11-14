@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: "Recoleta";
+    src: url(Recoleta/Recoleta-Regular.ttf);
+}
+
+header {
+    background-color: #D6D2C4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 2%;
+    position: sticky;
+    min-height: 110px;
+    top: 0;
+    box-shadow: 1px 2px 5px #585858;
+    border: 2px;
+}
+.btn-home {
+    font-size: 13px;
+    background: #FFFCF7;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    position: relative;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+.logo{
+    width: 150px;
+    height: auto;
+}
+
+.menu a{
+    color: #585858;
+    font-family: 'Recoleta';
+    font-weight: medium;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 5px;
+    height: 180px;
+}
+
+.home{
+    background-color: #FFFCF7;
+    display: flex;
+    padding: 2rem;
+    height: auto;
+    min-height: 660px;
+}
+
+.home .torta{
+    max-width: 400px;
+    object-fit: contain;
+    padding: 2.2rem;
+    margin: 2.5rem;
+}
+.textos{
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.textos .cabecalho{
+    font-family: 'Recoleta';
+    font-size: 2.3rem;
+    font-weight: bold;
+    color: #585858;
+    padding: 2rem;
+    margin: 2rem 2rem 3rem 2rem;
+    text-align: center;
+}
+.textos .corpo{
+    font-family: 'Recoleta';
+    font-size: 1.5rem;
+    color: #585858;
+    padding: 1rem;
+    margin: 3rem 2rem 3rem 2rem;
+    text-align: center;
+}
+.simulador{
+    background-color: #FFDAAA;
+    display: flex;
+    padding: 2rem;
+    min-height: 660px;
+}
+.simulador .cenoura{
+    max-height: 500px;
+    object-fit: contain;
+    padding: 2.2rem;
+    margin: 2.5rem;
+}
+.simulador .botao{
+    background-color: #FFFCF7;
+    font-family: 'Recoleta';
+    font-size: 1.5rem;
+    text-align: center;
+    align-self:;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 0;
+}
