@@ -7,8 +7,12 @@
     font-family: "Recoleta";
     src: url(Recoleta/Recoleta-Regular.ttf);
 }
+@font-face {
+    font-family: "SF PRO";
+    src: url(Recoleta/SF-Pro-Display-Regular.otf);
+}
 
-header {
+header{
     background-color: #D6D2C4;
     display: flex;
     justify-content: space-between;
@@ -18,10 +22,9 @@ header {
     position: sticky;
     min-height: 110px;
     top: 0;
-    box-shadow: 1px 2px 5px #585858;
     border: 2px;
 }
-.btn-home {
+.btn-home{
     font-size: 13px;
     background: #FFFCF7;
     border: none;
@@ -32,13 +35,13 @@ header {
     cursor: pointer;
 }
 .logo{
-    width: 150px;
+    max-width: 120px;
     height: auto;
 }
 
 .menu a{
     color: #585858;
-    font-family: 'Recoleta';
+    font-family: 'SF PRO';
     font-weight: medium;
     text-decoration: none;
     font-size: 16px;
@@ -55,7 +58,7 @@ header {
 }
 
 .home .torta{
-    max-width: 400px;
+    max-width: 380px;
     object-fit: contain;
     padding: 2.2rem;
     margin: 2.5rem;
@@ -69,7 +72,7 @@ header {
     font-size: 2.3rem;
     font-weight: bold;
     color: #585858;
-    padding: 2rem;
+    padding: 2rem 3rem 2rem 3rem;
     margin: 2rem 2rem 3rem 2rem;
     text-align: center;
 }
@@ -77,8 +80,8 @@ header {
     font-family: 'Recoleta';
     font-size: 1.5rem;
     color: #585858;
-    padding: 1rem;
-    margin: 3rem 2rem 3rem 2rem;
+    padding: 1rem 2rem 1rem 2rem;
+    margin: 6rem 2rem 3rem 2rem;
     text-align: center;
 }
 .simulador{
@@ -96,10 +99,30 @@ header {
 .simulador .botao{
     background-color: #FFFCF7;
     font-family: 'Recoleta';
+    color: #585858;
     font-size: 1.5rem;
     text-align: center;
-    align-self:;
-    padding: 0.5rem;
+    padding: 0.7rem;
     border-radius: 5px;
     border: 0;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+.botaoSimular{
+    flex-direction: row;
+    justify-self: flex-end;
+    padding: 1rem;
+    margin: 1rem 7rem 1rem 1rem;
+}
+footer{
+    background-color: #D6D2C4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 2%;
+    position: sticky;
+    min-height: 110px;
+    bottom: 0;
+    border: 2px;
 }
