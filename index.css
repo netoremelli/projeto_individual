@@ -84,6 +84,14 @@ header{
     margin: 6rem 2rem 3rem 2rem;
     text-align: center;
 }
+.textos .sobre{
+    font-family: 'Recoleta';
+    font-size: 1.5rem;
+    color: #585858;
+    padding: 1rem 2rem 1rem 2rem;
+    margin: 1rem 1rem 1rem 2rem;
+    text-align: center;
+}
 .simulador{
     background-color: #FFDAAA;
     display: flex;
@@ -107,6 +115,7 @@ header{
     border: 0;
     transition: 0.5s ease;
     cursor: pointer;
+    text-decoration: none;
 }
 .botaoSimular{
     flex-direction: row;
@@ -121,8 +130,85 @@ footer{
     align-items: center;
     padding-left: 5%;
     padding-right: 2%;
-    position: sticky;
     min-height: 110px;
     bottom: 0;
     border: 2px;
+}
+.maquina{
+    max-width: 450px;
+    object-fit: contain;
+    padding: 2.2rem;
+    margin: 2.5rem;
+}
+.contato{
+    background-color: #FFDAAA;
+    display: flex;
+    padding: 2rem;
+    height: auto;
+    min-height: 660px;
+}
+.bolinho{
+    max-width: 350px;
+    object-fit: contain;
+    padding: 2.2rem;
+    margin: 2.5rem;
+}
+.caixaContato{
+    width: 780px;
+    height: 500px;
+    background-color: #FFFCF7;
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem;
+}
+.formulario{
+    display: flex;
+    flex-direction: column;
+}
+.botaoEnviar{
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 1rem;
+    margin: 1rem 7rem 1rem 1rem;
+}
+.botaoEnviar .botao{
+    background-color: #D6D2C4;
+    font-family: 'Recoleta';
+    color: #585858;
+    font-size: 1.5rem;
+    max-width: 20%;
+    text-align: center;
+    padding: 0.7rem;
+    border-radius: 5px;
+    border: 0;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+.geradorReceitas{
+    background-color: #FFDAAA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    height: auto;
+    min-height: 660px;
+}
+.geradorReceitas h1{
+    padding: 1rem;
+    margin: 1rem;
+    font-family: 'Recoleta';
+    color: #585858;
+    font-size: 2rem;
+    text-align: center;
+}
+.livrinho{
+    max-width: 900px;
+}
+.login{
+    background-color: #FFFCF7;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    height: auto;
+    min-height: 660px;
 }
