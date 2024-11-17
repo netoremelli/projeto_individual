@@ -127,9 +127,11 @@ footer{
     background-color: #D6D2C4;
     display: flex;
     justify-content: space-between;
+    font-family: 'SF PRO';
+    font-weight: 600;
+    color: #585858;
     align-items: center;
-    padding-left: 5%;
-    padding-right: 2%;
+    padding: 0.5rem 2rem 0.5rem 2rem;
     min-height: 110px;
     bottom: 0;
     border: 2px;
@@ -159,24 +161,26 @@ footer{
     background-color: #FFFCF7;
     border-radius: 8px;
     padding: 2rem;
-    margin: 2rem;
+    margin: 2rem 2rem 0.5rem 2rem;
+    object-fit: fill;
 }
 .formulario{
     display: flex;
     flex-direction: column;
 }
 .botaoEnviar{
+    display: flex;
     flex-direction: row;
     justify-content: flex-end;
     padding: 1rem;
-    margin: 1rem 7rem 1rem 1rem;
+    margin: 1rem;
 }
 .botaoEnviar .botao{
     background-color: #D6D2C4;
     font-family: 'Recoleta';
     color: #585858;
     font-size: 1.5rem;
-    max-width: 20%;
+    min-width: 20%;
     text-align: center;
     padding: 0.7rem;
     border-radius: 5px;
@@ -202,7 +206,72 @@ footer{
     text-align: center;
 }
 .livrinho{
-    max-width: 900px;
+    background-image: url(imagens/livrinho.png);
+    background-color: #FFDAAA;
+    background-size: contain;
+    width: 900px;
+    height: 621px;
+}
+.geradorReceitas input{
+    border: none;
+    border-radius: 5px;
+    height: 15px;
+    width: 100px;
+    background-color: #E5E5E5;
+    margin: 1rem;
+    padding: 0.2rem;
+    font-family: 'SF PRO';
+    outline: none;
+}
+
+.input1{
+    position: absolute;
+    top: 30rem;
+    left: 30rem;
+}
+.input2{
+    position: absolute;
+    top: 25rem;
+    left: 25rem;
+}
+.input3{
+    position: absolute;
+    top: 20rem;
+    left: 35rem;
+}
+.input4{
+    position: absolute;
+    top: 17rem;
+    left: 24rem;
+}
+.input5{
+    position: absolute;
+    top: 35rem;
+    left: 34rem;
+}
+.input6{
+    position: absolute;
+    top: 40rem;
+    left: 28rem;
+}
+.input7{
+    position: absolute;
+    top: 45rem;
+    left: 33rem;
+}
+.botaoGerador{
+    font-family: 'SF PRO';
+    color: #585858;
+    background-color: #D6D2C4;
+    width: 160px;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem;
+    font-size: larger;
+    margin-top: 2rem;
+    position: absolute;
+    top: 45rem;
+    left: 55rem;
 }
 .login{
     background-color: #FFFCF7;
@@ -211,4 +280,102 @@ footer{
     padding: 2rem;
     height: auto;
     min-height: 660px;
+}
+.inputContato{
+    border: none;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    background-color: #FFFCF7;
+    margin: 1rem;
+    padding: 0.5rem;
+    font-family: 'SF PRO';
+    outline: none;
+    text-align: left;
+}
+.linksFooter{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+.linksFooter a{
+    text-decoration: none;
+    font-family: 'SF PRO';
+    color: #585858;
+    margin: 0.8rem 0.4rem 0.8rem 0.4rem;
+}
+.linksFooter .organizarLinks{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+.linksFooter .organizarImagens{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+}
+.linksFooter img{
+    padding: 0.1rem;
+}
+.login{
+    display: flex;
+    font-family: 'Recoleta';
+    color: #585858;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 2rem;
+    gap: 1.5rem;
+    text-align: center;
+}
+.caixaLogin{
+    background-color: #D6D2C4;
+    border-radius: 15px;
+    height: 494px;
+    width: 444px;
+    padding: 1rem;
+}
+.caixaCadastro{
+    background-color: #FFDAAA;
+    border-radius: 15px;
+    height: 494px;
+    width: 444px;
+    padding: 1rem;
+}
+.login input{
+    border: none;
+    border-radius: 5px;
+    height: 35px;
+    width: 380px;
+    background-color: #FFFCF7;
+    margin: 1rem;
+    padding: 0.5rem;
+    font-family: 'SF PRO';
+    outline: none;
+}
+.login button{
+    font-family: 'SF PRO';
+    color: #585858;
+    background-color: #E5E5E5;
+    width: 160px;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem;
+    font-size: larger;
+    margin-top: 2rem;
+}
+.login h1{
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+.queijo{
+    position: absolute;
+    z-index: 10;
+    width: 240px;
+    height: auto;
+    top: 550px;
+    left: 80px;
 }

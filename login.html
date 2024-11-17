@@ -7,7 +7,7 @@
     <title>Login</title>
 </head>
 <header>
-    <a href="index.html"><img class="logo" src="imagens site/panelinha.png"/></a>
+    <a href="index.html"><img class="logo" src="imagens/panelinha.png"/></a>
     <div class="menu">
         <a class="btn-home" href="index.html">Home</a>
         <a class="btn-home" href="sobre.html">Sobre</a>
@@ -17,10 +17,32 @@
 </header>
 <body>
    <div class="login">
-
+        <div class="caixaLogin">
+            <h1>Login</h1>
+            <p><input type="text" placeholder="email" id="input_email"></p>
+            <p><input type="text" placeholder="senha" id="input_senha"></p>
+            <p><button onclick="validar_login()">ENTRAR</button></p>
+        </div>
+        <div class="caixaCadastro">
+            <h1>Cadastro</h1>
+            <p><input type="text" placeholder="email" id="input_email"></p>
+            <p><input type="text" placeholder="nome" id="input_nome"></p>
+            <p><input type="text" placeholder="senha" id="input_senha"></p>
+            <p><input type="text" placeholder="confirmar senha" id="input_senha2"></p>
+            <p><button onclick="cadastrar()">CADASTRAR</button></p>
+        </div>
    </div>
+   <img class="queijo" src="imagens/queijinho.png" alt="">
 </body>
 <footer>
-    
+    Este site é exclusivamente institucional.
+    <div class="linksFooter">
+        <div class="organizarImagens">
+            <img src="imagens/github.png" alt=""> <img src="imagens/linkedin.png" alt="">
+        </div>
+        <div class="organizarLinks">
+            <a href="github.com/netoremelli">GitHub</a> <a href="https://www.linkedin.com/in/wanderley-remelli-neto-07a407140/">LinkedIn</a>
+        </div>
+    </div>
 </footer>
 </html>
