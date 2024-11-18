@@ -208,7 +208,7 @@ footer{
 .livrinho{
     background-image: url(imagens/livrinho.png);
     background-color: #FFDAAA;
-    background-size: contain;
+    background-size: cover;
     width: 900px;
     height: 621px;
 }
@@ -225,39 +225,40 @@ footer{
 }
 
 .input1{
+    font-family: 'SF PRO';
     position: absolute;
-    top: 30rem;
-    left: 30rem;
+    top: 18rem;
+    left: 25rem;
 }
 .input2{
     position: absolute;
-    top: 25rem;
-    left: 25rem;
+    top: 23rem;
+    left: 35rem;
 }
 .input3{
     position: absolute;
-    top: 20rem;
-    left: 35rem;
+    top: 28rem;
+    left: 25rem;
 }
 .input4{
     position: absolute;
-    top: 17rem;
-    left: 24rem;
+    top: 33rem;
+    left: 35rem;
 }
 .input5{
     position: absolute;
-    top: 35rem;
-    left: 34rem;
+    top: 38rem;
+    left: 25rem;
 }
 .input6{
     position: absolute;
-    top: 40rem;
-    left: 28rem;
+    top: 43rem;
+    left: 35rem;
 }
 .input7{
     position: absolute;
-    top: 45rem;
-    left: 33rem;
+    top: 48rem;
+    left: 25rem;
 }
 .botaoGerador{
     font-family: 'SF PRO';
@@ -281,7 +282,7 @@ footer{
     height: auto;
     min-height: 660px;
 }
-.inputContato{
+.textareaContato{
     border: none;
     border-radius: 5px;
     height: 100%;
@@ -290,6 +291,7 @@ footer{
     margin: 1rem;
     padding: 0.5rem;
     font-family: 'SF PRO';
+    font-size: large;
     outline: none;
     text-align: left;
 }
@@ -347,7 +349,7 @@ footer{
 }
 .login input{
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     height: 35px;
     width: 380px;
     background-color: #FFFCF7;
