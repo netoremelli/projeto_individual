@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/sessao.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <title>Login</title>
+</head>
+<header>
+    <a href="index.html"><img class="logo" src="imagens/panelinha.png"/></a>
+    <div class="menu">
+        <a class="btn-home" href="index.html">Home</a>
+        <a class="btn-home" href="sobre.html">Sobre</a>
+        <a class="btn-home" href="contato.html">Contato</a>
+        <a class="btn-home" href="login.html">Login</a>
+    </div>
+</header>
+<body>
+   <div class="login">
+        <div class="caixaLogin">
+            <h1>Login</h1>
+            <p><input type="text" placeholder="email" id="input_email_login"></p>
+            <p><input type="password" placeholder="senha" id="input_senha_login"></p>
+            <p><button onclick="entrar()">ENTRAR</button></p>
+        </div>
+        <div class="caixaCadastro">
+            <h1>Cadastro</h1>
+            <p><input type="text" placeholder="email" id="input_email_cadastrar"></p>
+            <p><input type="text" placeholder="nome" id="input_nome_cadastrar"></p>
+            <p><input type="password" placeholder="senha" id="input_senha_cadastrar"></p>
+            <p><input type="password" placeholder="confirmar senha" id="input_senha2_cadastrar"></p>
+            <p><button onclick="cadastrar()">CADASTRAR</button></p>
+        </div>
+   </div>
+   <img class="queijo" src="imagens/queijinho.png" alt="">
+</body>
+<footer>
+    Este site é exclusivamente institucional.
+    <div class="linksFooter">
+        <div class="organizarImagens">
+            <img src="imagens/github.png" alt=""> <img src="imagens/linkedin.png" alt="">
+        </div>
+        <div class="organizarLinks">
+            <a href="github.com/netoremelli">GitHub</a> <a href="https://www.linkedin.com/in/wanderley-remelli-neto-07a407140/">LinkedIn</a>
+        </div>
+    </div>
+</footer>
+</html>
+<script>
+
+  // Autenticar Login
+  function entrar() {
+    // aguardar();
+
+    var emailVar = input_email_login.value;
+    var senhaVar = input_senha_login.value;
+
+    if (emailVar == "" || senhaVar == "") {
+      cardErro.style.display = "block"
+      mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+      // finalizarAguardar();
+      return false;
+    }
+    else {
+      setInterval(sumirMensagem, 5000)
+    }
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar
+      })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+          sessionStorage.EMAIL_USUARIO = json.email;
+          sessionStorage.NOME_USUARIO = json.nome;
+
+          setTimeout(function () {
+            window.location = "./index.html";
+          }, 1000); // apenas para exibir o loading
+
+        });
+
+      } else {
+
+        console.log("Houve um erro ao tentar realizar o login!");
+
+        resposta.text().then(texto => {
+          console.error(texto);
+          finalizarAguardar(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
+    return false;
+  }
+
+
+  function sumirMensagem() {
+    cardErro.style.display = "none"
+  }
+
+  // Realizar Cadastro
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = input_nome_cadastrar.value;
+    var emailVar = input_email_cadastrar.value;
+    var senhaVar = input_senha_cadastrar.value;
+    var confirmacaoSenhaVar = input_senha2_cadastrar.value;
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "Preencha todas as informações para cadastrar";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar
+
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardAcerto.style.display = "block";
+
+          mensagem_acerto.innerHTML =
+            "Cadastro realizado com sucesso!";
+
+          setTimeout(() => {
+            window.location = "#";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>
