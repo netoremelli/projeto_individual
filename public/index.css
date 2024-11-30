@@ -20,7 +20,7 @@ header{
     padding-left: 5%;
     padding-right: 2%;
     position: sticky;
-    min-height: 110px;
+    min-height: 90px;
     top: 0;
     border: 2px;
 }
@@ -35,7 +35,7 @@ header{
     cursor: pointer;
 }
 .logo{
-    max-width: 120px;
+    max-width: 110px;
     height: auto;
 }
 
@@ -54,11 +54,11 @@ header{
     display: flex;
     padding: 2rem;
     height: auto;
-    min-height: 660px;
+    min-height: 600px;
 }
 
 .home .torta{
-    max-width: 380px;
+    max-width: 340px;
     object-fit: contain;
     padding: 2.2rem;
     margin: 2.5rem;
@@ -69,7 +69,7 @@ header{
 }
 .textos .cabecalho{
     font-family: 'Recoleta';
-    font-size: 2.3rem;
+    font-size: 2.1rem;
     font-weight: bold;
     color: #585858;
     padding: 2rem 3rem 2rem 3rem;
@@ -78,25 +78,25 @@ header{
 }
 .textos .corpo{
     font-family: 'Recoleta';
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #585858;
     padding: 1rem 2rem 1rem 2rem;
-    margin: 6rem 2rem 3rem 2rem;
+    margin: 6rem 2rem 2rem 2rem;
     text-align: center;
 }
 .textos .sobre{
     font-family: 'Recoleta';
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #585858;
-    padding: 1rem 2rem 1rem 2rem;
-    margin: 1rem 1rem 1rem 2rem;
+    padding: 1rem 1rem 1rem 1rem;
+    margin: 1rem 0.8rem 1rem 1.6rem;
     text-align: center;
 }
 .simulador{
     background-color: #FFDAAA;
     display: flex;
     padding: 2rem;
-    min-height: 660px;
+    min-height: 600px;
 }
 .simulador .cenoura{
     max-height: 500px;
@@ -118,8 +118,9 @@ header{
     text-decoration: none;
 }
 .botaoSimular{
+    display: flex;
     flex-direction: row;
-    justify-self: flex-end;
+    justify-content: flex-end;
     padding: 1rem;
     margin: 1rem 7rem 1rem 1rem;
 }
@@ -132,15 +133,15 @@ footer{
     color: #585858;
     align-items: center;
     padding: 0.5rem 2rem 0.5rem 2rem;
-    min-height: 110px;
+    min-height: 90px;
     bottom: 0;
     border: 2px;
 }
 .maquina{
-    max-width: 450px;
+    max-width: 405px;
     object-fit: contain;
     padding: 2.2rem;
-    margin: 2.5rem;
+    margin: 2rem;
 }
 .contato{
     background-color: #FFDAAA;
@@ -156,11 +157,11 @@ footer{
     margin: 2.5rem;
 }
 .caixaContato{
-    width: 780px;
-    height: 500px;
+    width: 630px;
+    height: 405px;
     background-color: #FFFCF7;
     border-radius: 8px;
-    padding: 2rem;
+    padding: 0.5rem;
     margin: 2rem 2rem 0.5rem 2rem;
     object-fit: fill;
 }
@@ -195,7 +196,7 @@ footer{
     align-items: center;
     padding: 2rem;
     height: auto;
-    min-height: 660px;
+    min-height: 600px;
 }
 .geradorReceitas h1{
     padding: 1rem;
@@ -209,56 +210,47 @@ footer{
     background-image: url(imagens/livrinho.png);
     background-color: #FFDAAA;
     background-size: cover;
-    width: 900px;
-    height: 621px;
+    width: 720px;
+    height: 497px;
 }
 .geradorReceitas input{
     border: none;
     border-radius: 5px;
     height: 15px;
     width: 100px;
-    background-color: #E5E5E5;
+    background-color: #D6D2C4;
     margin: 1rem;
     padding: 0.2rem;
     font-family: 'SF PRO';
+    font-weight: bold;
     outline: none;
 }
 
 .input1{
     font-family: 'SF PRO';
     position: absolute;
-    top: 18rem;
-    left: 25rem;
+    top: 17rem;
+    left: 23rem;
 }
 .input2{
     position: absolute;
-    top: 23rem;
-    left: 35rem;
+    top: 22rem;
+    left: 31rem;
 }
 .input3{
     position: absolute;
-    top: 28rem;
-    left: 25rem;
+    top: 27rem;
+    left: 23rem;
 }
 .input4{
     position: absolute;
-    top: 33rem;
-    left: 35rem;
+    top: 32rem;
+    left: 31rem;
 }
 .input5{
     position: absolute;
-    top: 38rem;
-    left: 25rem;
-}
-.input6{
-    position: absolute;
-    top: 43rem;
-    left: 35rem;
-}
-.input7{
-    position: absolute;
-    top: 48rem;
-    left: 25rem;
+    top: 37rem;
+    left: 23rem;
 }
 .botaoGerador{
     font-family: 'SF PRO';
@@ -271,8 +263,8 @@ footer{
     font-size: larger;
     margin-top: 2rem;
     position: absolute;
-    top: 45rem;
-    left: 55rem;
+    top: 39rem;
+    left: 46rem;
 }
 .login{
     background-color: #FFFCF7;
@@ -285,8 +277,8 @@ footer{
 .textareaContato{
     border: none;
     border-radius: 5px;
-    height: 100%;
-    width: 100%;
+    width: 90%;
+    height: 90%;
     background-color: #FFFCF7;
     margin: 1rem;
     padding: 0.5rem;
