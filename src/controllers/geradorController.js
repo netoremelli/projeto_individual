@@ -9,6 +9,7 @@ function ingredientesBuscadosController(req, res) {
     var ingrediente4 = req.body.ingrediente4Server;
     var ingrediente5 = req.body.ingrediente5Server;
 
+    console.log("Acessei o controller");
 
 
         // Passe os valores como parâmetro e vá para o arquivo geradorModel.js

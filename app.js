@@ -17,7 +17,7 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
-var geradorRouter = require("./src/routes/gerador");
+// var geradorRouter = require("./src/routes/gerador");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,7 +27,12 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
-app.use("/ingredientesBuscados", geradorRouter);
+app.use("/ingredientesBuscados", usuarioRouter);
+app.use("/ingredientesMaisFrequentes", usuarioRouter);
+app.use("/buscarReceita", usuarioRouter);
+app.use("/buscarIngredientesReceitaBuscada", usuarioRouter);
+app.use("/buscarInstrucoesReceitaBuscada", usuarioRouter);
+
 
 
 app.listen(PORTA_APP, function () {

@@ -373,3 +373,10 @@ footer{
     top: 550px;
     left: 80px;
 }
+.dashboard{
+    background-color: #FFFCF7;
+    display: flex;
+    padding: 2rem;
+    height: auto;
+    min-height: 600px;
+}

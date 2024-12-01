@@ -27,7 +27,7 @@
             <input class="input3" type="text" id="input_ingrediente_3">
             <input class="input4" type="text" id="input_ingrediente_4">
             <input class="input5" type="text" id="input_ingrediente_5">
-            <button class="botaoGerador" onclick="ingredientesBuscados()">GERAR RECEITA</button>
+            <button class="botaoGerador" onclick="ingredientesBuscados()">BUSCAR RECEITA</button>
         </div>
     </div>
 </body>
@@ -45,6 +45,7 @@
 </html>
 
 <script>
+
     function ingredientesBuscados(){
 
     //Recupere o valor da nova input pelo nome do id
@@ -55,7 +56,56 @@
     var ingrediente4 = input_ingrediente_4.value;
     var ingrediente5 = input_ingrediente_5.value;
 
-    fetch("/gerador/ingredientesBuscados", {
+    if (ingrediente1 == ""){
+        delete ingrediente1
+    }
+    if (ingrediente2 == ""){
+        delete ingrediente2
+    }
+    if (ingrediente3 == ""){
+        delete ingrediente3
+    } 
+    if (ingrediente4 == ""){
+        delete ingrediente4
+    } 
+    if (ingrediente5 == ""){
+        delete ingrediente5
+    } 
+
+
+
+    fetch("/usuarios/ingredientesBuscados", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/gerador.js
+
+        ingrediente1Server: ingrediente1,
+        ingrediente2Server: ingrediente2,
+        ingrediente3Server: ingrediente3,
+        ingrediente4Server: ingrediente4,
+        ingrediente5Server: ingrediente5
+
+      }),
+    });
+
+    return false;
+  }
+
+  function buscarReceita(){
+    var ingrediente1 = input_ingrediente_1.value;
+    var ingrediente2 = input_ingrediente_2.value;
+    var ingrediente3 = input_ingrediente_3.value;
+    var ingrediente4 = input_ingrediente_4.value;
+    var ingrediente5 = input_ingrediente_5.value;
+
+    livrinho.innerHTML = ``
+
+    // chamar aqui a ingredientesbucados
+    fetch("/usuarios/buscarReceita", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

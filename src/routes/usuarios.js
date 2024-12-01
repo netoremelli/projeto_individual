@@ -12,4 +12,26 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.post("/buscarReceita", function (req, res) {
+    usuarioController.buscarReceitaController(req, res);
+});
+
+router.post("/buscarIngredientesReceitaBuscada", function (req, res) {
+    usuarioController.buscarIngredientesReceitaBuscadaController(req, res);
+});
+
+router.post("/buscarInstrucoesReceitaBuscada", function (req, res) {
+    usuarioController.buscarInstrucoesReceitaBuscadaController(req, res);
+});
+
+
+router.post("/ingredientesBuscados", function (req, res) {
+    usuarioController.ingredientesBuscadosController(req, res);
+});
+
+router.post("/ingredientesMaisFrequentes", function (req, res) {
+    usuarioController.ingredientesMaisFrequentesController(req, res);
+});
+
+
 module.exports = router;

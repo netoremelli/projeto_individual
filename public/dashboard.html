@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Dashboard</title>
+</head>
+<header>
+    <a href="index.html"><img class="logo" src="imagens/panelinha.png"/></a>
+    <div class="menu">
+        <a class="btn-home" href="index.html">Home</a>
+    </div>
+</header>
+<body>
+    <div class="dashboard">
+            <canvas id="ingredientesfrequentes"></canvas>
+    </div>
+    
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+maisFrequentes = []
+qtdEntradas = []
+
+fetch("/usuarios/ingredientesMaisFrequentes", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    }
+}).then(function (resposta) {
+    console.log("Peguei os ingredientes mais frequentes")
+
+    if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+            console.log(json);
+
+            for (i = 0; i < json.length; i++) {
+                maisFrequentes.push(json[i].nome)
+                qtdEntradas.push(json[i].quantidade)
+            }
+            console.log(maisFrequentes)
+            console.log(qtdEntradas)
+            const ingredientesMaisFrequenstes = document.getElementById('ingredientesfrequentes');
+
+
+            const dataIngredientesMaisFrequentes = {
+                labels: maisFrequentes,
+                datasets: [{
+                    label: 'Ingredientes',
+                    backgroundColor: '#B81476',
+                    data: qtdEntradas,
+                    borderRadius: 20
+                },
+                ]
+
+            }
+            const configIngredientesMaisFrequentes = {
+                type: 'bar',
+                data: dataIngredientesMaisFrequentes,
+                options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+                },
+            };
+            new Chart(dataIngredientesMaisFrequentes, configIngredientesMaisFrequentes);        
+        });
+
+        
+
+    } else {
+
+        console.log(resposta);
+
+        resposta.text().then(texto => {
+            console.error(texto);
+            finalizarAguardar(texto);
+        });
+    }
+
+}).catch(function (erro) {
+    console.log(erro);
+})
+
+
+</script>
