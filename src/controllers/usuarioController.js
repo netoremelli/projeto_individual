@@ -103,6 +103,25 @@ function ingredientesBuscadosController(req, res) {
             );
 }
 
+function receitasBuscadasController(req, res){
+    var nomeReceita = req.body.nomeReceitaServer
+    usuarioModel.receitasBuscadas(nomeReceita)
+    .then(
+        function(resultado) {
+            res.json(resultado);
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro na coleta de novos Dados:",
+                erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+    }
+
 function ingredientesMaisFrequentesController(req, res) {
     usuarioModel.ingredientesMaisFrequentes()
     .then(
@@ -140,7 +159,13 @@ function receitasMaisBuscadasController(req, res) {
     }
 
     function buscarReceitaController(req, res) {
-        usuarioModel.buscarReceita()
+        var ingrediente1 = req.body.ingrediente1Server;
+        var ingrediente2 = req.body.ingrediente2Server;
+        var ingrediente3 = req.body.ingrediente3Server;
+        var ingrediente4 = req.body.ingrediente4Server;
+        var ingrediente5 = req.body.ingrediente5Server;
+
+        usuarioModel.buscarReceita(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
         .then(
             function(resultado) {
                 res.json(resultado);
@@ -198,6 +223,7 @@ module.exports = {
     autenticar,
     cadastrar,
     ingredientesBuscadosController,
+    receitasBuscadasController,
     ingredientesMaisFrequentesController,
     receitasMaisBuscadasController,
     buscarReceitaController,

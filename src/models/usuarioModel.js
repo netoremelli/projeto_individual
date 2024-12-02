@@ -26,14 +26,22 @@ function ingredientesBuscados(ingrediente1, ingrediente2, ingrediente3, ingredie
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO buscados (nome) VALUES ('${ingrediente1}'), ('${ingrediente2}'), ('${ingrediente3}'), ('${ingrediente4}'), ('${ingrediente5}')`;
+        INSERT INTO ingredientesBuscados (nome) VALUES ('${ingrediente1}'), ('${ingrediente2}'), ('${ingrediente3}'), ('${ingrediente4}'), ('${ingrediente5}')`;
+    return database.executar(instrucaoSql);
+}
+
+function receitasBuscadas(receitaBuscada) {
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucaoSql = `
+        INSERT INTO receitasBuscadas (nome) VALUES ('${receitaBuscada}'),`;
     return database.executar(instrucaoSql);
 }
 
 function ingredientesMaisFrequentes(req, res) {
     var instrucaoSql = `
     SELECT nome, COUNT(*) AS quantidade
-    FROM buscados
+    FROM ingredientesBuscados
     GROUP BY nome
     ORDER BY quantidade DESC
     LIMIT 3;`;
@@ -44,7 +52,7 @@ function ingredientesMaisFrequentes(req, res) {
 function receitasMaisBuscadas(req, res) {
     var instrucaoSql = `
     SELECT nome, COUNT(*) AS quantidade
-    FROM receitas
+    FROM receitasBuscadas
     GROUP BY nome
     ORDER BY quantidade DESC
     LIMIT 3;`;
@@ -54,7 +62,7 @@ function receitasMaisBuscadas(req, res) {
 
 function buscarReceita(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5) {
     var instrucaoSql = `
-    SELECT receitas.nome, receitas.idReceita AS receita
+    SELECT receitas.nome AS nomeReceita
     FROM receitas 
     JOIN quantidades ON idReceita = fkReceita
     JOIN ingredientes ON idIngrediente = fkIngrediente
@@ -122,6 +130,7 @@ module.exports = {
     autenticar,
     cadastrar,
     ingredientesBuscados,
+    receitasBuscadas,
     ingredientesMaisFrequentes,
     receitasMaisBuscadas,
     buscarReceita,

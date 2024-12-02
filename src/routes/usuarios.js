@@ -29,6 +29,14 @@ router.post("/ingredientesBuscados", function (req, res) {
     usuarioController.ingredientesBuscadosController(req, res);
 });
 
+router.post("/receitasBuscadas", function (req, res) {
+    usuarioController.receitasBuscadasController(req, res);
+});
+
+router.post("/receitasMaisBuscadas", function (req, res) {
+    usuarioController.receitasMaisBuscadasController(req, res);
+});
+
 router.post("/ingredientesMaisFrequentes", function (req, res) {
     usuarioController.ingredientesMaisFrequentesController(req, res);
 });

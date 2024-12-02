@@ -28,6 +28,8 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/ingredientesBuscados", usuarioRouter);
+app.use("/receitasBuscadas", usuarioRouter);
+app.use("/receitasMaisBuscadas", usuarioRouter);
 app.use("/ingredientesMaisFrequentes", usuarioRouter);
 app.use("/buscarReceita", usuarioRouter);
 app.use("/buscarIngredientesReceitaBuscada", usuarioRouter);

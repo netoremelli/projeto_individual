@@ -206,12 +206,20 @@ footer{
     font-size: 2rem;
     text-align: center;
 }
-.livrinho{
+.livrinhoEntrada{
     background-image: url(imagens/livrinho.png);
     background-color: #FFDAAA;
     background-size: cover;
     width: 720px;
     height: 497px;
+}
+.livrinhoSaida{
+    background-image: url(imagens/livrinho.png);
+    background-color: #FFDAAA;
+    background-size: cover;
+    width: 720px;
+    height: 497px;
+    display: none;
 }
 .geradorReceitas input{
     border: none;

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../js/sessao.js"></script>
     <link rel="stylesheet" href="index.css">
-    <title>Gerador de Receitas</title>
+    <title>Buscador de Receitas</title>
 </head>
 <header>
     <a href="index.html"><img class="logo" src="imagens/panelinha.png"/></a>
@@ -21,13 +21,20 @@
         <h1>
             Insira até 5 ingredientes:
         </h1>
-        <div class="livrinho">
+        <div class="livrinhoEntrada" id="entrada">
             <input class="input1" type="text" id="input_ingrediente_1">
             <input class="input2" type="text" id="input_ingrediente_2">
             <input class="input3" type="text" id="input_ingrediente_3">
             <input class="input4" type="text" id="input_ingrediente_4">
             <input class="input5" type="text" id="input_ingrediente_5">
-            <button class="botaoGerador" onclick="ingredientesBuscados()">BUSCAR RECEITA</button>
+            <button class="botaoGerador" onclick="buscarReceita()">BUSCAR RECEITA</button>
+        </div>
+        <div class="livrinhoSaida" id="saida">
+            <div class="paginaUM">
+                <p id="tituloReceita">Olá</p>
+                <div id="ingredientesReceita"></div>
+            </div>
+            <div id="instrucoesReceita"></div>
         </div>
     </div>
 </body>
@@ -45,34 +52,9 @@
 </html>
 
 <script>
+    nomeReceita = ""
 
-    function ingredientesBuscados(){
-
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var ingrediente1 = input_ingrediente_1.value;
-    var ingrediente2 = input_ingrediente_2.value;
-    var ingrediente3 = input_ingrediente_3.value;
-    var ingrediente4 = input_ingrediente_4.value;
-    var ingrediente5 = input_ingrediente_5.value;
-
-    if (ingrediente1 == ""){
-        delete ingrediente1
-    }
-    if (ingrediente2 == ""){
-        delete ingrediente2
-    }
-    if (ingrediente3 == ""){
-        delete ingrediente3
-    } 
-    if (ingrediente4 == ""){
-        delete ingrediente4
-    } 
-    if (ingrediente5 == ""){
-        delete ingrediente5
-    } 
-
-
+    function ingredientesBuscados(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5){
 
     fetch("/usuarios/ingredientesBuscados", {
       method: "POST",
@@ -95,34 +77,96 @@
     return false;
   }
 
-  function buscarReceita(){
-    var ingrediente1 = input_ingrediente_1.value;
-    var ingrediente2 = input_ingrediente_2.value;
-    var ingrediente3 = input_ingrediente_3.value;
-    var ingrediente4 = input_ingrediente_4.value;
-    var ingrediente5 = input_ingrediente_5.value;
+    function receitasBuscadas(nomeReceita){
 
-    livrinho.innerHTML = ``
 
-    // chamar aqui a ingredientesbucados
-    fetch("/usuarios/buscarReceita", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/gerador.js
+        fetch("/usuarios/receitasBuscadas", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/gerador.js
+            nomeReceitaServer: nomeReceita
+
+        }),
+        });
+
+        return false;
+    }
+
+    function buscarReceita(){
+        var ingrediente1 = input_ingrediente_1.value;
+        var ingrediente2 = input_ingrediente_2.value;
+        var ingrediente3 = input_ingrediente_3.value;
+        var ingrediente4 = input_ingrediente_4.value;
+        var ingrediente5 = input_ingrediente_5.value;
+        const entrada = document.getElementById("entrada");
+        const saida = document.getElementById("saida")
+        const tituloReceita = document.getElementById("tituloReceita")
+        const ingredientesReceita = document.getElementById("ingredientesReceita")
+        const intrucoesReceita = document.getElementById("instrucoesReceita")
+
+        entrada.style.display = "none"
+        saida.style.display = "block"
+
+        // chamar aqui a ingredientesbucados
+        fetch("/usuarios/buscarReceita", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/gerador.js
 
         ingrediente1Server: ingrediente1,
         ingrediente2Server: ingrediente2,
         ingrediente3Server: ingrediente3,
         ingrediente4Server: ingrediente4,
         ingrediente5Server: ingrediente5
+        })
+        }).then(function (resposta) {
+            console.log("Peguei os dados da receita!")
 
-      }),
-    });
+            if (resposta.ok) {
+            console.log(resposta);
 
-    return false;
-  }
+            resposta.json().then(json => {
+            console.log(json);
+            
+            nomeReceita = nomeReceita + json[0].nomeReceita
+        });
+        }else{
+            console.log("Houve um erro ao armazenar sua pontuação!");
+        };
+        }).catch(function (erro) {
+        console.log(erro);
+        })
+        ingredientesBuscados(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
+        receitasBuscadas(nomeReceita)
+        buscarIngredientesReceitaBuscada(nomeReceita)
+        buscarInstrucoesReceitaBuscada(nomeReceita)
+        
+        // .then(function (resposta) {
+        // console.log("Peguei a receita")
+
+        // if (resposta.ok) {
+        //     console.log(resposta);
+
+        //     resposta.json().then(json => {
+        //         console.log(json);
+        //         tituloReceita.innerHTML = nomeReceita,
+        //         ingredientesReceita.innerHTML = ingredientesReceita
+        //     });
+
+        // else{
+
+        // console.log("Houve um erro ao buscar uma receita! Tente com outros ingredientes!");
+
+
+        return false;
+        }
+
 </script>
