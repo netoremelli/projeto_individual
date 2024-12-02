@@ -31,7 +31,11 @@ app.use("/ingredientesBuscados", usuarioRouter);
 app.use("/receitasBuscadas", usuarioRouter);
 app.use("/receitasMaisBuscadas", usuarioRouter);
 app.use("/ingredientesMaisFrequentes", usuarioRouter);
-app.use("/buscarReceita", usuarioRouter);
+app.use("/buscarReceita1ingrediente", usuarioRouter);
+app.use("/buscarReceita2ingredientes", usuarioRouter);
+app.use("/buscarReceita3ingredientes", usuarioRouter);
+app.use("/buscarReceita4ingredientes", usuarioRouter);
+app.use("/buscarReceita5ingredientes", usuarioRouter);
 app.use("/buscarIngredientesReceitaBuscada", usuarioRouter);
 app.use("/buscarInstrucoesReceitaBuscada", usuarioRouter);
 

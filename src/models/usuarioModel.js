@@ -59,8 +59,110 @@ function receitasMaisBuscadas(req, res) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+function buscarReceita1ingrediente(ingrediente1) {
+    var instrucaoSql = `
+    SELECT receitas.nome AS nomeReceita
+    FROM receitas 
+    JOIN quantidades ON idReceita = fkReceita
+    JOIN ingredientes ON idIngrediente = fkIngrediente
+    WHERE receitas.idReceita IN (
+        SELECT r2.idReceita
+        FROM receitas r2
+        JOIN quantidades q2 ON r2.idReceita = q2.fkReceita
+        JOIN ingredientes i2 ON q2.fkIngrediente = i2.idIngrediente
+        WHERE i2.nome = '${ingrediente1}')`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+function buscarReceita2ingredientes(ingrediente1, ingrediente2) {
+    var instrucaoSql = `
+    SELECT receitas.nome AS nomeReceita
+    FROM receitas 
+    JOIN quantidades ON idReceita = fkReceita
+    JOIN ingredientes ON idIngrediente = fkIngrediente
+    WHERE receitas.idReceita IN (
+        SELECT r2.idReceita
+        FROM receitas r2
+        JOIN quantidades q2 ON r2.idReceita = q2.fkReceita
+        JOIN ingredientes i2 ON q2.fkIngrediente = i2.idIngrediente
+        WHERE i2.nome = '${ingrediente1}'
+    )
+    AND receitas.idReceita IN (
+        SELECT r3.idReceita
+        FROM receitas r3
+        JOIN quantidades q3 ON r3.idReceita = q3.fkReceita
+        JOIN ingredientes i3 ON q3.fkIngrediente = i3.idIngrediente
+        WHERE i3.nome = '${ingrediente2}')`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+function buscarReceita3ingredientes(ingrediente1, ingrediente2, ingrediente3) {
+    var instrucaoSql = `
+    SELECT receitas.nome AS nomeReceita
+    FROM receitas 
+    JOIN quantidades ON idReceita = fkReceita
+    JOIN ingredientes ON idIngrediente = fkIngrediente
+    WHERE receitas.idReceita IN (
+        SELECT r2.idReceita
+        FROM receitas r2
+        JOIN quantidades q2 ON r2.idReceita = q2.fkReceita
+        JOIN ingredientes i2 ON q2.fkIngrediente = i2.idIngrediente
+        WHERE i2.nome = '${ingrediente1}'
+    )
+    AND receitas.idReceita IN (
+        SELECT r3.idReceita
+        FROM receitas r3
+        JOIN quantidades q3 ON r3.idReceita = q3.fkReceita
+        JOIN ingredientes i3 ON q3.fkIngrediente = i3.idIngrediente
+        WHERE i3.nome = '${ingrediente2}'
+    )
+    AND receitas.idReceita IN (
+        SELECT r4.idReceita
+        FROM receitas r4
+        JOIN quantidades q4 ON r4.idReceita = q4.fkReceita
+        JOIN ingredientes i4 ON q4.fkIngrediente = i4.idIngrediente
+        WHERE i4.nome = '${ingrediente3}')`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+function buscarReceita4ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4) {
+    var instrucaoSql = `
+    SELECT receitas.nome AS nomeReceita
+    FROM receitas 
+    JOIN quantidades ON idReceita = fkReceita
+    JOIN ingredientes ON idIngrediente = fkIngrediente
+    WHERE receitas.idReceita IN (
+        SELECT r2.idReceita
+        FROM receitas r2
+        JOIN quantidades q2 ON r2.idReceita = q2.fkReceita
+        JOIN ingredientes i2 ON q2.fkIngrediente = i2.idIngrediente
+        WHERE i2.nome = '${ingrediente1}'
+    )
+    AND receitas.idReceita IN (
+        SELECT r3.idReceita
+        FROM receitas r3
+        JOIN quantidades q3 ON r3.idReceita = q3.fkReceita
+        JOIN ingredientes i3 ON q3.fkIngrediente = i3.idIngrediente
+        WHERE i3.nome = '${ingrediente2}'
+    )
+    AND receitas.idReceita IN (
+        SELECT r4.idReceita
+        FROM receitas r4
+        JOIN quantidades q4 ON r4.idReceita = q4.fkReceita
+        JOIN ingredientes i4 ON q4.fkIngrediente = i4.idIngrediente
+        WHERE i4.nome = '${ingrediente3}'
+    )
+    AND receitas.idReceita IN (
+        SELECT r5.idReceita
+        FROM receitas r5
+        JOIN quantidades q5 ON r5.idReceita = q5.fkReceita
+        JOIN ingredientes i5 ON q5.fkIngrediente = i5.idIngrediente
+        WHERE i5.nome = '${ingrediente4}')`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
-function buscarReceita(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5) {
+function buscarReceita5ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5) {
     var instrucaoSql = `
     SELECT receitas.nome AS nomeReceita
     FROM receitas 
@@ -133,7 +235,11 @@ module.exports = {
     receitasBuscadas,
     ingredientesMaisFrequentes,
     receitasMaisBuscadas,
-    buscarReceita,
+    buscarReceita1ingrediente,
+    buscarReceita2ingredientes,
+    buscarReceita3ingredientes,
+    buscarReceita4ingredientes,
+    buscarReceita5ingredientes,
     buscarIngredientesReceitaBuscada,
     buscarInstrucoesReceitaBuscada
 };

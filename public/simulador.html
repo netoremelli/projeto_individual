@@ -73,9 +73,8 @@
 
       }),
     });
-
     return false;
-  }
+    }
 
     function receitasBuscadas(nomeReceita){
 
@@ -96,6 +95,123 @@
         return false;
     }
 
+    function buscarReceita1ingrediente(ingrediente1) {
+    const resposta = fetch("/usuarios/buscarReceita1ingrediente", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        ingrediente1Server: ingrediente1 
+    }),
+    });
+
+    if (resposta.ok) {
+      resposta.json().then(json => {
+        console.log("Peguei os dados da receita!", json);
+        nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
+      });
+    } else {
+      console.log("Erro ao armazenar sua pontuação!");
+    }
+  }
+
+
+  function buscarReceita2ingrediente(ingrediente1, ingredient2) {
+    const resposta = fetch("/usuarios/buscarReceita2ingrediente", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        ingrediente1Server: ingrediente1,
+        ingrediente2Server: ingrediente2 
+    }),
+    });
+
+    if (resposta.ok) {
+      resposta.json().then(json => {
+        console.log("Peguei os dados da receita!", json);
+        nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
+      });
+    } else {
+      console.log("Erro ao armazenar sua pontuação!");
+    }
+  }
+
+
+  function buscarReceita3ingrediente(ingrediente1, ingredient2, ingrediente3) {
+    const resposta = fetch("/usuarios/buscarReceita3ingrediente", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        ingrediente1Server: ingrediente1,
+        ingrediente2Server: ingrediente2,
+        ingrediente3Server: ingrediente3
+    }),
+    });
+
+    if (resposta.ok) {
+      resposta.json().then(json => {
+        console.log("Peguei os dados da receita!", json);
+        nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
+      });
+    } else {
+      console.log("Erro ao armazenar sua pontuação!");
+    }
+  }
+
+  function buscarReceita4ingrediente(ingrediente1, ingredient2, ingrediente3, ingrediente4) {
+    const resposta = fetch("/usuarios/buscarReceita4ingrediente", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        ingrediente1Server: ingrediente1,
+        ingrediente2Server: ingrediente2,
+        ingrediente3Server: ingrediente3,
+        ingrediente4Server: ingrediente4
+    }),
+    });
+
+    if (resposta.ok) {
+      resposta.json().then(json => {
+        console.log("Peguei os dados da receita!", json);
+        nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
+      });
+    } else {
+      console.log("Erro ao armazenar sua pontuação!");
+    }
+  }
+
+  function buscarReceita5ingrediente(ingrediente1, ingredient2, ingrediente3, ingrediente4, ingrediente5) {
+    const resposta = fetch("/usuarios/buscarReceita5ingrediente", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        ingrediente1Server: ingrediente1,
+        ingrediente2Server: ingrediente2,
+        ingrediente3Server: ingrediente3,
+        ingrediente4Server: ingrediente4,
+        ingrediente5Server: ingrediente5
+    }),
+    });
+
+    if (resposta.ok) {
+      resposta.json().then(json => {
+        console.log("Peguei os dados da receita!", json);
+        nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
+      });
+    } else {
+      console.log("Erro ao armazenar sua pontuação!");
+    }
+  }
+
     function buscarReceita(){
         var ingrediente1 = input_ingrediente_1.value;
         var ingrediente2 = input_ingrediente_2.value;
@@ -108,63 +224,31 @@
         const ingredientesReceita = document.getElementById("ingredientesReceita")
         const intrucoesReceita = document.getElementById("instrucoesReceita")
 
+        if (ingrediente2 == ''){
+            buscarReceita1ingrediente(ingrediente1)
+        }
+        else if (ingrediente3 == ''){
+            buscarReceita2ingredientes(ingrediente1, ingrediente2)
+        }
+        else if (ingrediente4 == ''){
+            buscarReceita3ingredientes(ingrediente1, ingrediente2, ingrediente3)
+        }
+        else if (ingrediente5 == ''){
+            buscarReceita4ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4)
+        }
+        else{
+            buscarReceita5ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
+        }
         entrada.style.display = "none"
         saida.style.display = "block"
 
-        // chamar aqui a ingredientesbucados
-        fetch("/usuarios/buscarReceita", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/gerador.js
-
-        ingrediente1Server: ingrediente1,
-        ingrediente2Server: ingrediente2,
-        ingrediente3Server: ingrediente3,
-        ingrediente4Server: ingrediente4,
-        ingrediente5Server: ingrediente5
-        })
-        }).then(function (resposta) {
-            console.log("Peguei os dados da receita!")
-
-            if (resposta.ok) {
-            console.log(resposta);
-
-            resposta.json().then(json => {
-            console.log(json);
-            
-            nomeReceita = nomeReceita + json[0].nomeReceita
-        });
-        }else{
-            console.log("Houve um erro ao armazenar sua pontuação!");
-        };
-        }).catch(function (erro) {
-        console.log(erro);
-        })
-        ingredientesBuscados(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
-        receitasBuscadas(nomeReceita)
-        buscarIngredientesReceitaBuscada(nomeReceita)
-        buscarInstrucoesReceitaBuscada(nomeReceita)
         
-        // .then(function (resposta) {
-        // console.log("Peguei a receita")
-
-        // if (resposta.ok) {
-        //     console.log(resposta);
-
-        //     resposta.json().then(json => {
-        //         console.log(json);
-        //         tituloReceita.innerHTML = nomeReceita,
-        //         ingredientesReceita.innerHTML = ingredientesReceita
-        //     });
-
-        // else{
-
-        // console.log("Houve um erro ao buscar uma receita! Tente com outros ingredientes!");
-
+        ingredientesBuscados(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
+        // receitasBuscadas(nomeReceita)
+        // buscarIngredientesReceitaBuscada(nomeReceita)
+        // buscarInstrucoesReceitaBuscada(nomeReceita)
+        console.log(nomeReceita)
+        tituloReceita.innerHTML += `${nomeReceita}`
 
         return false;
         }

@@ -157,15 +157,98 @@ function receitasMaisBuscadasController(req, res) {
         }
     );
     }
+    function buscarReceita1ingredienteController(req, res) {
+        var ingrediente1 = req.body.ingrediente1Server;
 
-    function buscarReceitaController(req, res) {
+        usuarioModel.buscarReceita1ingrediente(ingrediente1)
+        .then(
+            function(resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro na coleta de novos Dados:",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+    function buscarReceita2ingredientesController(req, res) {
+        var ingrediente1 = req.body.ingrediente1Server;
+        var ingrediente2 = req.body.ingrediente2Server;
+
+
+        usuarioModel.buscarReceita2ingredientes(ingrediente1, ingrediente2)
+        .then(
+            function(resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro na coleta de novos Dados:",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+    function buscarReceita3ingredientesController(req, res) {
+        var ingrediente1 = req.body.ingrediente1Server;
+        var ingrediente2 = req.body.ingrediente2Server;
+        var ingrediente3 = req.body.ingrediente3Server;
+
+        usuarioModel.buscarReceita3ingredientes(ingrediente1, ingrediente2, ingrediente3)
+        .then(
+            function(resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro na coleta de novos Dados:",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+    function buscarReceita4ingredientesController(req, res) {
+        var ingrediente1 = req.body.ingrediente1Server;
+        var ingrediente2 = req.body.ingrediente2Server;
+        var ingrediente3 = req.body.ingrediente3Server;
+        var ingrediente4 = req.body.ingrediente4Server;
+
+        usuarioModel.buscarReceita4ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4)
+        .then(
+            function(resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro na coleta de novos Dados:",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+
+    function buscarReceita5ingredientesController(req, res) {
         var ingrediente1 = req.body.ingrediente1Server;
         var ingrediente2 = req.body.ingrediente2Server;
         var ingrediente3 = req.body.ingrediente3Server;
         var ingrediente4 = req.body.ingrediente4Server;
         var ingrediente5 = req.body.ingrediente5Server;
 
-        usuarioModel.buscarReceita(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
+        usuarioModel.buscarReceita5ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
         .then(
             function(resultado) {
                 res.json(resultado);
@@ -226,7 +309,11 @@ module.exports = {
     receitasBuscadasController,
     ingredientesMaisFrequentesController,
     receitasMaisBuscadasController,
-    buscarReceitaController,
+    buscarReceita1ingredienteController,
+    buscarReceita2ingredientesController,
+    buscarReceita3ingredientesController,
+    buscarReceita4ingredientesController,
+    buscarReceita5ingredientesController,
     buscarIngredientesReceitaBuscadaController,
     buscarInstrucoesReceitaBuscadaController,
 

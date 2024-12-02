@@ -12,7 +12,24 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
-router.post("/buscarReceita", function (req, res) {
+router.post("/buscarReceita1ingrediente", function (req, res) {
+    usuarioController.buscarReceita1ingredienteController(req, res);
+});
+
+router.post("/buscarReceita2ingredientes", function (req, res) {
+    usuarioController.buscarReceita2ingredientesController(req, res);
+});
+
+router.post("/buscarReceita3ingredientes", function (req, res) {
+    usuarioController.buscarReceita3ingredientesController(req, res);
+});
+
+router.post("/buscarReceita4ingredientes", function (req, res) {
+    usuarioController.buscarReceita4ingredientesController(req, res);
+});
+
+
+router.post("/buscarReceita5ingredientes", function (req, res) {
     usuarioController.buscarReceitaController(req, res);
 });
 
