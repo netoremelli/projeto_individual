@@ -388,3 +388,7 @@ footer{
     height: auto;
     min-height: 600px;
 }
+.paginaUM p{
+    margin: 2rem 2rem 2rem 5rem;
+    font-family: 'Recoleta';
+}

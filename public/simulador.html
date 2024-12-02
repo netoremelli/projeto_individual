@@ -31,7 +31,7 @@
         </div>
         <div class="livrinhoSaida" id="saida">
             <div class="paginaUM">
-                <p id="tituloReceita">Olá</p>
+                <p id="tituloReceita"></p>
                 <div id="ingredientesReceita"></div>
             </div>
             <div id="instrucoesReceita"></div>
@@ -95,30 +95,31 @@
         return false;
     }
 
-    function buscarReceita1ingrediente(ingrediente1) {
-    const resposta = fetch("/usuarios/buscarReceita1ingrediente", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ 
-        ingrediente1Server: ingrediente1 
-    }),
-    });
+    async function buscarReceita1ingrediente(ingrediente1) {
+        const resposta = await fetch("/usuarios/buscarReceita1ingrediente", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+            ingrediente1Server: ingrediente1 
+        }),
+        });
 
-    if (resposta.ok) {
-      resposta.json().then(json => {
-        console.log("Peguei os dados da receita!", json);
-        nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
-      });
-    } else {
-      console.log("Erro ao armazenar sua pontuação!");
+        if (resposta.ok) {
+        await resposta.json().then(json => {
+            console.log("Peguei os dados da receita!", json);
+            nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
+            console.log(nomeReceita)
+        });
+        } else {
+        console.log("Erro ao armazenar sua pontuação!");
+        }
     }
-  }
 
 
-  function buscarReceita2ingrediente(ingrediente1, ingredient2) {
-    const resposta = fetch("/usuarios/buscarReceita2ingrediente", {
+  async function buscarReceita2ingrediente(ingrediente1, ingredient2) {
+    const resposta = await fetch("/usuarios/buscarReceita2ingrediente", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -130,7 +131,7 @@
     });
 
     if (resposta.ok) {
-      resposta.json().then(json => {
+      await resposta.json().then(json => {
         console.log("Peguei os dados da receita!", json);
         nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
       });
@@ -140,8 +141,8 @@
   }
 
 
-  function buscarReceita3ingrediente(ingrediente1, ingredient2, ingrediente3) {
-    const resposta = fetch("/usuarios/buscarReceita3ingrediente", {
+  async function buscarReceita3ingrediente(ingrediente1, ingredient2, ingrediente3) {
+    const resposta = await fetch("/usuarios/buscarReceita3ingrediente", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -154,7 +155,7 @@
     });
 
     if (resposta.ok) {
-      resposta.json().then(json => {
+      await resposta.json().then(json => {
         console.log("Peguei os dados da receita!", json);
         nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
       });
@@ -163,8 +164,8 @@
     }
   }
 
-  function buscarReceita4ingrediente(ingrediente1, ingredient2, ingrediente3, ingrediente4) {
-    const resposta = fetch("/usuarios/buscarReceita4ingrediente", {
+  async function buscarReceita4ingrediente(ingrediente1, ingredient2, ingrediente3, ingrediente4) {
+    const resposta = await fetch("/usuarios/buscarReceita4ingrediente", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -178,7 +179,7 @@
     });
 
     if (resposta.ok) {
-      resposta.json().then(json => {
+      await resposta.json().then(json => {
         console.log("Peguei os dados da receita!", json);
         nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
       });
@@ -187,8 +188,8 @@
     }
   }
 
-  function buscarReceita5ingrediente(ingrediente1, ingredient2, ingrediente3, ingrediente4, ingrediente5) {
-    const resposta = fetch("/usuarios/buscarReceita5ingrediente", {
+  async function buscarReceita5ingrediente(ingrediente1, ingredient2, ingrediente3, ingrediente4, ingrediente5) {
+    const resposta = await fetch("/usuarios/buscarReceita5ingrediente", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -203,7 +204,7 @@
     });
 
     if (resposta.ok) {
-      resposta.json().then(json => {
+      await resposta.json().then(json => {
         console.log("Peguei os dados da receita!", json);
         nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
       });
@@ -212,7 +213,7 @@
     }
   }
 
-    function buscarReceita(){
+    async function buscarReceita(){
         var ingrediente1 = input_ingrediente_1.value;
         var ingrediente2 = input_ingrediente_2.value;
         var ingrediente3 = input_ingrediente_3.value;
@@ -225,26 +226,26 @@
         const intrucoesReceita = document.getElementById("instrucoesReceita")
 
         if (ingrediente2 == ''){
-            buscarReceita1ingrediente(ingrediente1)
+            await buscarReceita1ingrediente(ingrediente1)
         }
         else if (ingrediente3 == ''){
-            buscarReceita2ingredientes(ingrediente1, ingrediente2)
+            await buscarReceita2ingredientes(ingrediente1, ingrediente2)
         }
         else if (ingrediente4 == ''){
-            buscarReceita3ingredientes(ingrediente1, ingrediente2, ingrediente3)
+            await buscarReceita3ingredientes(ingrediente1, ingrediente2, ingrediente3)
         }
         else if (ingrediente5 == ''){
-            buscarReceita4ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4)
+            await buscarReceita4ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4)
         }
         else{
-            buscarReceita5ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
+            await buscarReceita5ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
         }
         entrada.style.display = "none"
         saida.style.display = "block"
 
         
         ingredientesBuscados(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
-        // receitasBuscadas(nomeReceita)
+        receitasBuscadas(nomeReceita)
         // buscarIngredientesReceitaBuscada(nomeReceita)
         // buscarInstrucoesReceitaBuscada(nomeReceita)
         console.log(nomeReceita)

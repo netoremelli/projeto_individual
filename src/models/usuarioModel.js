@@ -34,7 +34,7 @@ function receitasBuscadas(receitaBuscada) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO receitasBuscadas (nome) VALUES ('${receitaBuscada}'),`;
+        INSERT INTO receitasBuscadas (nome) VALUES ('${receitaBuscada}')`;
     return database.executar(instrucaoSql);
 }
 
@@ -70,7 +70,7 @@ function buscarReceita1ingrediente(ingrediente1) {
         FROM receitas r2
         JOIN quantidades q2 ON r2.idReceita = q2.fkReceita
         JOIN ingredientes i2 ON q2.fkIngrediente = i2.idIngrediente
-        WHERE i2.nome = '${ingrediente1}')`;
+        WHERE i2.nome = '${ingrediente1}') LIMIT 1`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
