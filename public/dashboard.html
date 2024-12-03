@@ -10,19 +10,20 @@
     <a href="index.html"><img class="logo" src="imagens/panelinha.png"/></a>
     <div class="menu">
         <a class="btn-home" href="index.html">Home</a>
+        <a class="btn-home" href="simulador.html">Receitas</a>
     </div>
 </header>
 <body>
     <div class="dashboard">
-            <canvas id="ingredientesfrequentes"></canvas>
+        <canvas id="ingredientesfrequentes"></canvas>
     </div>
-    
 </body>
 </html>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-maisFrequentes = []
-qtdEntradas = []
+let maisFrequentes = [];
+let qtdEntradas = [];
 
 fetch("/usuarios/ingredientesMaisFrequentes", {
     method: "POST",
@@ -30,7 +31,7 @@ fetch("/usuarios/ingredientesMaisFrequentes", {
         "Content-Type": "application/json"
     }
 }).then(function (resposta) {
-    console.log("Peguei os ingredientes mais frequentes")
+    console.log("Peguei os ingredientes mais frequentes");
 
     if (resposta.ok) {
         console.log(resposta);
@@ -38,46 +39,45 @@ fetch("/usuarios/ingredientesMaisFrequentes", {
         resposta.json().then(json => {
             console.log(json);
 
-            for (i = 0; i < json.length; i++) {
-                maisFrequentes.push(json[i].nome)
-                qtdEntradas.push(json[i].quantidade)
+            for (let i = 0; i < json.length; i++) {
+                maisFrequentes.push(json[i].nome);
+                qtdEntradas.push(json[i].quantidade);
             }
-            console.log(maisFrequentes)
-            console.log(qtdEntradas)
-            const ingredientesMaisFrequenstes = document.getElementById('ingredientesfrequentes');
+            console.log(maisFrequentes);
+            console.log(qtdEntradas);
 
+            // Obtendo o contexto do canvas
+            const ctx = document.getElementById('ingredientesfrequentes').getContext('2d');
 
+            // Configuração do gráfico
             const dataIngredientesMaisFrequentes = {
                 labels: maisFrequentes,
                 datasets: [{
                     label: 'Ingredientes',
-                    backgroundColor: '#B81476',
+                    backgroundColor: '#FFDAAA',
                     data: qtdEntradas,
                     borderRadius: 20
-                },
-                ]
+                }]
+            };
 
-            }
             const configIngredientesMaisFrequentes = {
-                type: 'bar',
+                type: 'bar', // Tipo de gráfico
                 data: dataIngredientesMaisFrequentes,
                 options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-                },
             };
-            new Chart(dataIngredientesMaisFrequentes, configIngredientesMaisFrequentes);        
+
+            // Criando o gráfico
+            new Chart(ctx, configIngredientesMaisFrequentes);        
         });
 
-        
-
     } else {
-
         console.log(resposta);
-
         resposta.text().then(texto => {
             console.error(texto);
             finalizarAguardar(texto);
@@ -86,7 +86,8 @@ fetch("/usuarios/ingredientesMaisFrequentes", {
 
 }).catch(function (erro) {
     console.log(erro);
-})
+});
+</script>
 
 
 </script>

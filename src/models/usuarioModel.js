@@ -42,6 +42,7 @@ function ingredientesMaisFrequentes(req, res) {
     var instrucaoSql = `
     SELECT nome, COUNT(*) AS quantidade
     FROM ingredientesBuscados
+    WHERE nome != ''
     GROUP BY nome
     ORDER BY quantidade DESC
     LIMIT 3;`;
