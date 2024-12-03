@@ -61,7 +61,7 @@ function receitasMaisBuscadas(req, res) {
 }
 function buscarReceita1ingrediente(ingrediente1) {
     var instrucaoSql = `
-    SELECT receitas.nome AS nomeReceita
+    SELECT receitas.nome as nomeReceita, receitas.idReceita AS idReceita
     FROM receitas 
     JOIN quantidades ON idReceita = fkReceita
     JOIN ingredientes ON idIngrediente = fkIngrediente

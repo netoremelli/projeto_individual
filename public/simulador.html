@@ -53,6 +53,9 @@
 
 <script>
     nomeReceita = ""
+    ingredientes = []
+    instrucoes = ""
+    idReceita = 0
 
     function ingredientesBuscados(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5){
 
@@ -110,10 +113,11 @@
         await resposta.json().then(json => {
             console.log("Peguei os dados da receita!", json);
             nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
+            idReceita = json[0].idReceita
             console.log(nomeReceita)
         });
         } else {
-        console.log("Erro ao armazenar sua pontuação!");
+        console.log("Erro ao buscar receita!");
         }
     }
 
@@ -136,7 +140,7 @@
         nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
       });
     } else {
-      console.log("Erro ao armazenar sua pontuação!");
+      console.log("Erro ao buscar receita!");
     }
   }
 
@@ -160,7 +164,7 @@
         nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
       });
     } else {
-      console.log("Erro ao armazenar sua pontuação!");
+      console.log("Erro ao buscar receita!");
     }
   }
 
@@ -184,7 +188,7 @@
         nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
       });
     } else {
-      console.log("Erro ao armazenar sua pontuação!");
+      console.log("Erro ao buscar receita!");
     }
   }
 
@@ -209,9 +213,56 @@
         nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
       });
     } else {
-      console.log("Erro ao armazenar sua pontuação!");
+      console.log("Erro ao buscar receita!");
     }
   }
+
+    async function buscarIngredientesReceitaBuscada(nomeReceita){
+        const resposta = await fetch("/usuarios/buscarIngredientesReceitaBuscada", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        nomeReceitaServer: nomeReceita
+    }),
+    });
+    if (resposta.ok) {
+      await resposta.json().then(json => {
+        console.log("Peguei os ingredientes da receita!", json);
+        for (i = 0; i < json.length; i++) {
+            var ingredienteAtual = ""
+            ingredienteAtual += json[i].nome
+            ingredienteAtual += ": "
+            ingredienteAtual += json[i].quantidade
+            ingredientes.push([ingredienteAtual])
+      }});
+    } else {
+      console.log("Erro ao pegar os ingredientes da receita!");
+    }
+  }
+
+  async function buscarInstrucoesReceitaBuscada(nomeReceita){
+    const resposta = await fetch("/usuarios/buscarInstrucoesReceitaBuscada", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        nomeReceitaServer: nomeReceita
+    }),
+    });
+    if (resposta.ok) {
+      await resposta.json().then(json => {
+        console.log("Peguei as intruções da receita!", json);
+        instrucoes += json[0].instrucoes
+      });
+    } else {
+      console.log("Erro ao pegar os ingredientes da receita!");
+    }
+  }
+
+
 
     async function buscarReceita(){
         var ingrediente1 = input_ingrediente_1.value;
@@ -246,11 +297,15 @@
         
         ingredientesBuscados(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
         receitasBuscadas(nomeReceita)
-        // buscarIngredientesReceitaBuscada(nomeReceita)
-        // buscarInstrucoesReceitaBuscada(nomeReceita)
+        await buscarIngredientesReceitaBuscada(nomeReceita)
+        await buscarInstrucoesReceitaBuscada(nomeReceita)
         console.log(nomeReceita)
         tituloReceita.innerHTML += `${nomeReceita}`
-
+        console.log(ingredientes)
+        for (var index = 0; index < ingredientes.length; index++){
+            ingredientesReceita.innerHTML += `${ingredientes[index]} <br>`
+        }
+        intrucoesReceita.innerHTML += `${instrucoes}`
         return false;
         }
 

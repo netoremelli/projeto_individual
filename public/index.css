@@ -391,4 +391,9 @@ footer{
 .paginaUM p{
     margin: 2rem 2rem 2rem 5rem;
     font-family: 'Recoleta';
+    font-weight: bolder;
+}
+.paginaUM div{
+    margin: 2rem 2rem 2rem 5rem;
+    font-family: 'Recoleta';
 }

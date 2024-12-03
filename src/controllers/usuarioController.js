@@ -265,8 +265,9 @@ function receitasMaisBuscadasController(req, res) {
         );
     }
 
-    function buscarIngredientesReceitaBuscadaController(req, res) {
-        usuarioModel.buscarIngredientesReceitaBuscada()
+    function buscarIngredientesReceitaBuscadaController(req, res){
+        var nomeReceita = req.body.nomeReceitaServer
+        usuarioModel.buscarIngredientesReceitaBuscada(nomeReceita)
         .then(
             function(resultado) {
                 res.json(resultado);
@@ -285,7 +286,8 @@ function receitasMaisBuscadasController(req, res) {
 
 
     function buscarInstrucoesReceitaBuscadaController(req, res) {
-        usuarioModel.buscarInstrucoesReceitaBuscada()
+        var nomeReceita = req.body.nomeReceitaServer
+        usuarioModel.buscarInstrucoesReceitaBuscada(nomeReceita)
         .then(
             function(resultado) {
                 res.json(resultado);
