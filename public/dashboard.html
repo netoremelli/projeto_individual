@@ -15,15 +15,26 @@
 </header>
 <body>
     <div class="dashboard">
-        <canvas id="ingredientesfrequentes"></canvas>
+        <div class="graficos">
+            <div class="ingredientesFrequentes">
+                <div class="titulosGraficos">Ingredientes mais buscados</div>
+                <canvas id="ingredientesfrequentes"></canvas>
+            </div>
+            <div class="receitasFrequentes">
+                <div class="titulosGraficos">Receitas mais acessadas</div>
+                <canvas id="receitasfrequentes"></canvas>
+            </div> 
+        </div>
     </div>
 </body>
 </html>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-let maisFrequentes = [];
-let qtdEntradas = [];
+let ingredientesMaisFrequentes = [];
+let qtdEntradasIngredientes = [];
+let receitasMaisFrequentes = [];
+let qtdEntradasReceitas = [];
 
 fetch("/usuarios/ingredientesMaisFrequentes", {
     method: "POST",
@@ -40,22 +51,22 @@ fetch("/usuarios/ingredientesMaisFrequentes", {
             console.log(json);
 
             for (let i = 0; i < json.length; i++) {
-                maisFrequentes.push(json[i].nome);
-                qtdEntradas.push(json[i].quantidade);
+                ingredientesMaisFrequentes.push(json[i].nome);
+                qtdEntradasIngredientes.push(json[i].quantidade);
             }
-            console.log(maisFrequentes);
-            console.log(qtdEntradas);
+            console.log(ingredientesMaisFrequentes);
+            console.log(qtdEntradasIngredientes);
 
             // Obtendo o contexto do canvas
             const ctx = document.getElementById('ingredientesfrequentes').getContext('2d');
 
             // Configuração do gráfico
             const dataIngredientesMaisFrequentes = {
-                labels: maisFrequentes,
+                labels: ingredientesMaisFrequentes,
                 datasets: [{
-                    label: 'Ingredientes',
+                    label: 'Buscas',
                     backgroundColor: '#FFDAAA',
-                    data: qtdEntradas,
+                    data: qtdEntradasIngredientes,
                     borderRadius: 20
                 }]
             };
@@ -87,7 +98,67 @@ fetch("/usuarios/ingredientesMaisFrequentes", {
 }).catch(function (erro) {
     console.log(erro);
 });
-</script>
 
+fetch("/usuarios/receitasMaisBuscadas", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    }
+}).then(function (resposta) {
+    console.log("Peguei as receitas mais frequentes");
 
+    if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+            console.log(json);
+
+            for (let i = 0; i < json.length; i++) {
+                receitasMaisFrequentes.push(json[i].nome);
+                qtdEntradasReceitas.push(json[i].quantidade);
+            }
+            console.log(receitasMaisFrequentes);
+            console.log(qtdEntradasReceitas);
+
+            // Obtendo o contexto do canvas
+            const ctx = document.getElementById('receitasfrequentes').getContext('2d');
+
+            // Configuração do gráfico
+            const dataReceitasMaisFrequentes = {
+                labels: receitasMaisFrequentes,
+                datasets: [{
+                    label: 'Buscas',
+                    backgroundColor: '#D6D2C4',
+                    data: qtdEntradasReceitas,
+                    borderRadius: 20
+                }]
+            };
+
+            const configReceitasMaisFrequentes = {
+                type: 'bar', // Tipo de gráfico
+                data: dataReceitasMaisFrequentes,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+
+            // Criando o gráfico
+            new Chart(ctx, configReceitasMaisFrequentes);        
+        });
+
+    } else {
+        console.log(resposta);
+        resposta.text().then(texto => {
+            console.error(texto);
+            finalizarAguardar(texto);
+        });
+    }
+
+}).catch(function (erro) {
+    console.log(erro);
+});
 </script>

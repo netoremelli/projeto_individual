@@ -401,3 +401,28 @@ footer{
     width: 150px;
     height: auto;
 }
+#receitasfrequentes{
+    width: 150px;
+    height: auto;
+}
+
+.graficos{
+    display: flex;
+    max-width: 100%;
+    gap: 2rem;
+}
+.ingredientesFrequentes{
+    display: flex;
+    flex-direction: column;
+}
+.receitasFrequentes{
+    display: flex;
+    flex-direction: column;
+}
+.titulosGraficos{
+    font-family: 'Recoleta';
+    background-color: #585858;
+    color: #FFFCF7;
+    padding: 0.7rem;
+    border-radius: 8px;
+}
