@@ -405,23 +405,23 @@ footer{
     display: flex;
     flex-direction: row;
 }
-#ingredientesfrequentes{
-    width: 150px;
-    height: auto;
+#graficoingredientes{
+    width: 400px;
+    height: 600px;
 }
-#receitasfrequentes{
-    width: 150px;
-    height: auto;
+#graficoreceitas{
+    width: 400px;
+    height: 400px;
 }
 #instrucoesReceita{
     margin: 2rem 2.5rem 2rem 2rem;
     width: 40%;
     height: 80%;
 }
-
 .graficos{
     display: flex;
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
     gap: 2rem;
 }
 .ingredientesFrequentes{
@@ -438,4 +438,5 @@ footer{
     color: #FFFCF7;
     padding: 0.7rem;
     border-radius: 8px;
+    text-align: center;
 }
