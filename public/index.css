@@ -388,6 +388,10 @@ footer{
     height: auto;
     min-height: 600px;
 }
+.paginaUM{
+    height: 100%;
+    width: 50%;
+}
 .paginaUM p{
     margin: 2rem 2rem 2rem 5rem;
     font-family: 'Recoleta';
@@ -397,6 +401,10 @@ footer{
     margin: 2rem 2rem 2rem 5rem;
     font-family: 'Recoleta';
 }
+.containerLivro{
+    display: flex;
+    flex-direction: row;
+}
 #ingredientesfrequentes{
     width: 150px;
     height: auto;
@@ -404,6 +412,11 @@ footer{
 #receitasfrequentes{
     width: 150px;
     height: auto;
+}
+#instrucoesReceita{
+    margin: 2rem 2.5rem 2rem 2rem;
+    width: 40%;
+    height: 80%;
 }
 
 .graficos{
