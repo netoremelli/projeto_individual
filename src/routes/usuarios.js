@@ -58,5 +58,9 @@ router.post("/ingredientesMaisFrequentes", function (req, res) {
     usuarioController.ingredientesMaisFrequentesController(req, res);
 });
 
+router.post("/quantidadeReceitas", function (req, res) {
+    usuarioController.quantidadeReceitasController(req, res);
+});
+
 
 module.exports = router;

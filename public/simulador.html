@@ -113,10 +113,13 @@
 
         if (resposta.ok) {
         await resposta.json().then(json => {
+          if (json && json.length > 0) {
             console.log("Peguei os dados da receita!", json);
             nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
             idReceita = json[0].idReceita
-            console.log(nomeReceita)
+          } else {
+            console.log("Nenhuma receita encontrada.");
+          }
         });
         } else {
         console.log("Erro ao buscar receita!");
@@ -124,8 +127,8 @@
     }
 
 
-  async function buscarReceita2ingrediente(ingrediente1, ingrediente2) {
-    const resposta = await fetch("/usuarios/buscarReceita2ingrediente", {
+  async function buscarReceita2ingredientes(ingrediente1, ingrediente2) {
+    const resposta = await fetch("/usuarios/buscarReceita2ingredientes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -138,8 +141,12 @@
 
     if (resposta.ok) {
       await resposta.json().then(json => {
+        if (json && json.length > 0) {
         console.log("Peguei os dados da receita!", json);
-        nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
+        nomeReceita = json[0].nomeReceita; 
+      } else {
+        console.log("Nenhuma receita encontrada.");
+      }
       });
     } else {
       console.log("Erro ao buscar receita!");
@@ -147,8 +154,8 @@
   }
 
 
-  async function buscarReceita3ingrediente(ingrediente1, ingrediente2, ingrediente3) {
-    const resposta = await fetch("/usuarios/buscarReceita3ingrediente", {
+  async function buscarReceita3ingredientes(ingrediente1, ingrediente2, ingrediente3) {
+    const resposta = await fetch("/usuarios/buscarReceita3ingredientes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -162,16 +169,20 @@
 
     if (resposta.ok) {
       await resposta.json().then(json => {
+        if (json && json.length > 0) {
         console.log("Peguei os dados da receita!", json);
-        nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
+        nomeReceita = json[0].nomeReceita; 
+      } else {
+        console.log("Nenhuma receita encontrada.");
+      }
       });
     } else {
       console.log("Erro ao buscar receita!");
     }
   }
 
-  async function buscarReceita4ingrediente(ingrediente1, ingrediente2, ingrediente3, ingrediente4) {
-    const resposta = await fetch("/usuarios/buscarReceita4ingrediente", {
+  async function buscarReceita4ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4) {
+    const resposta = await fetch("/usuarios/buscarReceita4ingredientes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -186,16 +197,20 @@
 
     if (resposta.ok) {
       await resposta.json().then(json => {
+        if (json && json.length > 0) {
         console.log("Peguei os dados da receita!", json);
-        nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
+        nomeReceita = json[0].nomeReceita; 
+      } else {
+        console.log("Nenhuma receita encontrada.");
+      }
       });
     } else {
       console.log("Erro ao buscar receita!");
     }
   }
 
-  async function buscarReceita5ingrediente(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5) {
-    const resposta = await fetch("/usuarios/buscarReceita5ingrediente", {
+  async function buscarReceita5ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5) {
+    const resposta = await fetch("/usuarios/buscarReceita5ingredientes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -211,8 +226,12 @@
 
     if (resposta.ok) {
       await resposta.json().then(json => {
+        if (json && json.length > 0) {
         console.log("Peguei os dados da receita!", json);
-        nomeReceita = json[0].nomeReceita; // Atualiza a variável com o nome da receita
+        nomeReceita = json[0].nomeReceita; 
+      } else {
+        console.log("Nenhuma receita encontrada.");
+      }
       });
     } else {
       console.log("Erro ao buscar receita!");
@@ -282,24 +301,23 @@
             await buscarReceita1ingrediente(ingrediente1)
         }
         else if (ingrediente3 == ''){
-            await buscarReceita2ingrediente(ingrediente1, ingrediente2)
+            await buscarReceita2ingredientes(ingrediente1, ingrediente2)
         }
         else if (ingrediente4 == ''){
-            await buscarReceita3ingrediente(ingrediente1, ingrediente2, ingrediente3)
+            await buscarReceita3ingredientes(ingrediente1, ingrediente2, ingrediente3)
         }
         else if (ingrediente5 == ''){
-            await buscarReceita4ingrediente(ingrediente1, ingrediente2, ingrediente3, ingrediente4)
+            await buscarReceita4ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4)
         }
         else{
-            await buscarReceita5ingrediente(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
+            await buscarReceita5ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
         }
         entrada.style.display = "none"
         saida.style.display = "block"
 
         if (nomeReceita.length == 0){
           return ingredientesReceita.innerHTML = `Nenhuma receita foi encontrada em nosso banco com esses ingredientes, tente buscar novamente com outros ingredientes!
-          <button class="botaoGerador" onclick="voltar()">VOLTAR</button>
-`
+          <button class="botaoGerador" onclick="voltar()">VOLTAR</button>`
         }
         ingredientesBuscados(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
         receitasBuscadas(nomeReceita)

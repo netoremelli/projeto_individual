@@ -25,6 +25,10 @@
                 <div id="graficoreceitas"><canvas id="receitasfrequentes"></canvas></div>
             </div> 
         </div>
+        <div class="kpi">
+            <div class="titulosGraficos">Quantidade de receitas no banco</div>
+            <div id="quantidadeReceitas"></div>
+        </div>
     </div>
 </body>
 </html>
@@ -35,6 +39,9 @@ let ingredientesMaisFrequentes = [];
 let qtdEntradasIngredientes = [];
 let receitasMaisFrequentes = [];
 let qtdEntradasReceitas = [];
+let qtdReceitas = 0;
+let divQtdReceitas = document.getElementById("quantidadeReceitas")
+let receitasMaisFrequentesFormatado = []
 
 fetch("/usuarios/ingredientesMaisFrequentes", {
     method: "POST",
@@ -50,10 +57,12 @@ fetch("/usuarios/ingredientesMaisFrequentes", {
         resposta.json().then(json => {
             console.log(json);
 
+            // Populating the arrays with the data from the response
             for (let i = 0; i < json.length; i++) {
                 ingredientesMaisFrequentes.push(json[i].nome);
                 qtdEntradasIngredientes.push(json[i].quantidade);
             }
+
             console.log(ingredientesMaisFrequentes);
             console.log(qtdEntradasIngredientes);
 
@@ -75,16 +84,29 @@ fetch("/usuarios/ingredientesMaisFrequentes", {
                 type: 'bar', // Tipo de gráfico
                 data: dataIngredientesMaisFrequentes,
                 options: {
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    let label = tooltipItem.label;
+                                    if (/\s/.test(label)) {
+                                        return label.split(" ").join("\n");
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
                     scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true // Start Y-axis at zero
                         }
                     }
                 }
             };
 
             // Criando o gráfico
-            new Chart(ctx, configIngredientesMaisFrequentes);        
+            new Chart(ctx, configIngredientesMaisFrequentes);
         });
 
     } else {
@@ -98,6 +120,7 @@ fetch("/usuarios/ingredientesMaisFrequentes", {
 }).catch(function (erro) {
     console.log(erro);
 });
+
 
 fetch("/usuarios/receitasMaisBuscadas", {
     method: "POST",
@@ -113,11 +136,17 @@ fetch("/usuarios/receitasMaisBuscadas", {
         resposta.json().then(json => {
             console.log(json);
 
+            // Preenche os arrays com os dados
             for (let i = 0; i < json.length; i++) {
                 receitasMaisFrequentes.push(json[i].nome);
                 qtdEntradasReceitas.push(json[i].quantidade);
             }
-            console.log(receitasMaisFrequentes);
+
+            for (var index = 0; index < receitasMaisFrequentes.length; index++) {
+                receitasMaisFrequentesFormatado += [receitasMaisFrequentes[index].split(/\s+/).join("\n")]
+            }
+
+            console.log(receitasMaisFrequentesFormatado);
             console.log(qtdEntradasReceitas);
 
             // Obtendo o contexto do canvas
@@ -135,9 +164,24 @@ fetch("/usuarios/receitasMaisBuscadas", {
             };
 
             const configReceitasMaisFrequentes = {
-                type: 'bar', // Tipo de gráfico
+                type: 'bar',
                 data: dataReceitasMaisFrequentes,
                 options: {
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                labels: function(tooltipItem) {
+                                    for (var index = 0; index < receitasMaisFrequentes.length; index++){    
+                                        let label = tooltipItem.labels[index];
+ 
+                                        if (label) {
+                                            return labels.split(" ").join("\n") + ": " + tooltipItem.raw; // Quebra a linha por espaços
+                                        }
+                                        return label;}
+                                }
+                            }
+                        }
+                    },
                     scales: {
                         y: {
                             beginAtZero: true
@@ -147,7 +191,36 @@ fetch("/usuarios/receitasMaisBuscadas", {
             };
 
             // Criando o gráfico
-            new Chart(ctx, configReceitasMaisFrequentes);        
+            new Chart(ctx, configReceitasMaisFrequentes);
+        });
+
+    } else {
+        console.log(resposta);
+        resposta.text().then(texto => {
+            console.error(texto);
+            finalizarAguardar(texto);
+        });
+    }
+
+}).catch(function (erro) {
+    console.log(erro);
+});
+
+
+fetch("/usuarios/quantidadeReceitas", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    }
+}).then(function (resposta) {
+    console.log("Peguei a quantidade de receitas no banco");
+
+    if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+            console.log(json);
+            divQtdReceitas.innerHTML = json[0].quantidadeReceitas;
         });
 
     } else {

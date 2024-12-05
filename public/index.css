@@ -384,6 +384,7 @@ footer{
 .dashboard{
     background-color: #FFFCF7;
     display: flex;
+    justify-content: center;
     padding: 2rem;
     height: auto;
     min-height: 600px;
@@ -406,11 +407,11 @@ footer{
     flex-direction: row;
 }
 #graficoingredientes{
-    width: 400px;
+    width: 500px;
     height: 600px;
 }
 #graficoreceitas{
-    width: 400px;
+    width: 500px;
     height: 400px;
 }
 #instrucoesReceita{
@@ -439,4 +440,21 @@ footer{
     padding: 0.7rem;
     border-radius: 8px;
     text-align: center;
+}
+.kpi{
+    background-color: #D6D2C4;
+    border-radius: 8px;
+    height: 150px;
+    margin-left: 2rem;
+}
+#quantidadeReceitas{
+    display: flex;
+    padding: 0.1rem;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Recoleta';
+    text-align: center;
+    font-size: 50px;
+    font-weight: 900;
+    color: #585858;
 }

@@ -157,6 +157,25 @@ function receitasMaisBuscadasController(req, res) {
         }
     );
     }
+
+    function quantidadeReceitasController(req, res) {
+        usuarioModel.quantidadeReceitas()
+        .then(
+            function(resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro na coleta de novos Dados:",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+
     function buscarReceita1ingredienteController(req, res) {
         var ingrediente1 = req.body.ingrediente1Server;
 
@@ -311,6 +330,7 @@ module.exports = {
     receitasBuscadasController,
     ingredientesMaisFrequentesController,
     receitasMaisBuscadasController,
+    quantidadeReceitasController,
     buscarReceita1ingredienteController,
     buscarReceita2ingredientesController,
     buscarReceita3ingredientesController,

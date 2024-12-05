@@ -29,6 +29,7 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/ingredientesBuscados", usuarioRouter);
 app.use("/receitasBuscadas", usuarioRouter);
+app.use("/quantidadeReceitas", usuarioRouter);
 app.use("/receitasMaisBuscadas", usuarioRouter);
 app.use("/ingredientesMaisFrequentes", usuarioRouter);
 app.use("/buscarReceita1ingrediente", usuarioRouter);

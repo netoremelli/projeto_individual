@@ -54,12 +54,22 @@ function receitasMaisBuscadas(req, res) {
     var instrucaoSql = `
     SELECT nome, COUNT(*) AS quantidade
     FROM receitasBuscadas
+    WHERE nome != ''
     GROUP BY nome
     ORDER BY quantidade DESC
     LIMIT 3;`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+function quantidadeReceitas(req, res) {
+    var instrucaoSql = `
+    SELECT COUNT(nome) AS quantidadeReceitas
+    FROM receitas;`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function buscarReceita1ingrediente(ingrediente1) {
     var instrucaoSql = `
     SELECT receitas.nome as nomeReceita, receitas.idReceita AS idReceita
@@ -242,5 +252,6 @@ module.exports = {
     buscarReceita4ingredientes,
     buscarReceita5ingredientes,
     buscarIngredientesReceitaBuscada,
-    buscarInstrucoesReceitaBuscada
+    buscarInstrucoesReceitaBuscada,
+    quantidadeReceitas
 };
