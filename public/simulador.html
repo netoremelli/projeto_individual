@@ -124,7 +124,7 @@
     }
 
 
-  async function buscarReceita2ingrediente(ingrediente1, ingredient2) {
+  async function buscarReceita2ingrediente(ingrediente1, ingrediente2) {
     const resposta = await fetch("/usuarios/buscarReceita2ingrediente", {
       method: "POST",
       headers: {
@@ -147,7 +147,7 @@
   }
 
 
-  async function buscarReceita3ingrediente(ingrediente1, ingredient2, ingrediente3) {
+  async function buscarReceita3ingrediente(ingrediente1, ingrediente2, ingrediente3) {
     const resposta = await fetch("/usuarios/buscarReceita3ingrediente", {
       method: "POST",
       headers: {
@@ -170,7 +170,7 @@
     }
   }
 
-  async function buscarReceita4ingrediente(ingrediente1, ingredient2, ingrediente3, ingrediente4) {
+  async function buscarReceita4ingrediente(ingrediente1, ingrediente2, ingrediente3, ingrediente4) {
     const resposta = await fetch("/usuarios/buscarReceita4ingrediente", {
       method: "POST",
       headers: {
@@ -194,7 +194,7 @@
     }
   }
 
-  async function buscarReceita5ingrediente(ingrediente1, ingredient2, ingrediente3, ingrediente4, ingrediente5) {
+  async function buscarReceita5ingrediente(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5) {
     const resposta = await fetch("/usuarios/buscarReceita5ingrediente", {
       method: "POST",
       headers: {
@@ -282,21 +282,25 @@
             await buscarReceita1ingrediente(ingrediente1)
         }
         else if (ingrediente3 == ''){
-            await buscarReceita2ingredientes(ingrediente1, ingrediente2)
+            await buscarReceita2ingrediente(ingrediente1, ingrediente2)
         }
         else if (ingrediente4 == ''){
-            await buscarReceita3ingredientes(ingrediente1, ingrediente2, ingrediente3)
+            await buscarReceita3ingrediente(ingrediente1, ingrediente2, ingrediente3)
         }
         else if (ingrediente5 == ''){
-            await buscarReceita4ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4)
+            await buscarReceita4ingrediente(ingrediente1, ingrediente2, ingrediente3, ingrediente4)
         }
         else{
-            await buscarReceita5ingredientes(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
+            await buscarReceita5ingrediente(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
         }
         entrada.style.display = "none"
         saida.style.display = "block"
 
-        
+        if (nomeReceita.length == 0){
+          return ingredientesReceita.innerHTML = `Nenhuma receita foi encontrada em nosso banco com esses ingredientes, tente buscar novamente com outros ingredientes!
+          <button class="botaoGerador" onclick="voltar()">VOLTAR</button>
+`
+        }
         ingredientesBuscados(ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5)
         receitasBuscadas(nomeReceita)
         await buscarIngredientesReceitaBuscada(nomeReceita)
@@ -310,5 +314,13 @@
         intrucoesReceita.innerHTML += `${instrucoes}`
         return false;
         }
+
+    function voltar(){
+      const entrada = document.getElementById("entrada");
+      const saida = document.getElementById("saida");
+
+      saida.style.display = "none"
+      entrada.style.display = "block"
+    }
 
 </script>
