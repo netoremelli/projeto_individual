@@ -26,7 +26,7 @@ function ingredientesBuscados(ingrediente1, ingrediente2, ingrediente3, ingredie
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO ingredientesBuscados (nome) VALUES ('${ingrediente1}'), ('${ingrediente2}'), ('${ingrediente3}'), ('${ingrediente4}'), ('${ingrediente5}')`;
+        INSERT INTO ingredienteBuscado (nome) VALUES ('${ingrediente1}'), ('${ingrediente2}'), ('${ingrediente3}'), ('${ingrediente4}'), ('${ingrediente5}')`;
     return database.executar(instrucaoSql);
 }
 
@@ -34,18 +34,18 @@ function receitasBuscadas(receitaBuscada) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO receitasBuscadas (nome) VALUES ('${receitaBuscada}')`;
+        INSERT INTO receitaBuscada (nome) VALUES ('${receitaBuscada}')`;
     return database.executar(instrucaoSql);
 }
 
 function ingredientesMaisFrequentes(req, res) {
     var instrucaoSql = `
-    SELECT nome, COUNT(*) AS quantidade
-    FROM ingredientesBuscados
-    WHERE nome != ''
-    GROUP BY nome
-    ORDER BY quantidade DESC
-    LIMIT 3;`;
+    select nome, count(*) as quantidade
+    from ingredienteBuscado
+    where nome != ''
+    group by nome
+    order by quantidade desc
+    limit 3;`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -53,7 +53,7 @@ function ingredientesMaisFrequentes(req, res) {
 function receitasMaisBuscadas(req, res) {
     var instrucaoSql = `
     SELECT nome, COUNT(*) AS quantidade
-    FROM receitasBuscadas
+    FROM receitaBuscada
     WHERE nome != ''
     GROUP BY nome
     ORDER BY quantidade DESC

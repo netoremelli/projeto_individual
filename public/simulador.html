@@ -324,12 +324,13 @@
         await buscarIngredientesReceitaBuscada(nomeReceita)
         await buscarInstrucoesReceitaBuscada(nomeReceita)
         console.log(nomeReceita)
-        tituloReceita.innerHTML += `${nomeReceita}`
+        tituloReceita.innerHTML = `${nomeReceita}`
+        ingredientesReceita.innerHTML = ``
         console.log(ingredientes)
         for (var index = 0; index < ingredientes.length; index++){
             ingredientesReceita.innerHTML += `${ingredientes[index]} <br>`
         }
-        intrucoesReceita.innerHTML += `${instrucoes}`
+        intrucoesReceita.innerHTML = `${instrucoes} <button class="botaoGerador" onclick="voltar()">VOLTAR</button>`
         return false;
         }
 
@@ -337,8 +338,9 @@
       const entrada = document.getElementById("entrada");
       const saida = document.getElementById("saida");
 
-      saida.style.display = "none"
-      entrada.style.display = "block"
+      saida.style.display = "none";
+      entrada.style.display = "block";
+      location.reload();
     }
 
 </script>
